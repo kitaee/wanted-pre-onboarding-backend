@@ -2,7 +2,6 @@ package wanted.onboarding.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wanted.onboarding.exception.CustomException;
@@ -46,7 +45,7 @@ public class UserService {
      *  Date : 2023-08-01
      *  Description: 이메일 중복체크 메소드
      * */
-    private void isDuplicateEmail(String email) {
+    public void isDuplicateEmail(String email) {
         if(userRepository.findByEmail(email).isPresent()) {
             throw new CustomException(ErrorCode.DUPLICATE_EMAIL);
         }
@@ -57,7 +56,7 @@ public class UserService {
      *  Description: 유저 저장 메소드
      * */
     @Transactional
-    private void save(User user) {
+    public void save(User user) {
         userRepository.save(user);
     }
 
@@ -65,7 +64,7 @@ public class UserService {
      *  Date : 2023-08-01
      *  Description: 이메일 조건 검사 메소드
      * */
-    private void isValidEmail(String email) {
+    public void isValidEmail(String email) {
         if(!email.contains("@")) {
             throw new CustomException(ErrorCode.INVALID_EMAIL);
         }
@@ -75,7 +74,7 @@ public class UserService {
      *  Date : 2023-08-01
      *  Description: 비밀번호 조건 검사 메소드
      * */
-    private void isValidPassword(String password) {
+    public void isValidPassword(String password) {
         if(password.length() < 8) {
             throw new CustomException(ErrorCode.INVALID_PASSWORD);
         }
