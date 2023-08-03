@@ -43,4 +43,11 @@ public class Board {
         this.updatedAt = null;
         this.user = user;
     }
+
+    public Board updateBoard(String title, String content) {
+        this.title = title;
+        this.content = content;
+        this.updatedAt = LocalDateTime.now();
+        return this;
+    }
 }

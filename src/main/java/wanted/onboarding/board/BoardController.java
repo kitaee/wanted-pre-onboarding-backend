@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import wanted.onboarding.board.dto.CreateBoardRequest;
 import wanted.onboarding.board.dto.CreateBoardResponse;
 import wanted.onboarding.board.dto.ReadBoardResponse;
+import wanted.onboarding.board.dto.UpdateBoardRequest;
 import wanted.onboarding.board.service.BoardService;
 import wanted.onboarding.user.service.UserService;
 
@@ -37,6 +38,13 @@ public class BoardController {
     @GetMapping("{boardId}")
     public ResponseEntity<ReadBoardResponse> readDetailBoard(@PathVariable("boardId") Long boardId) {
         return new ResponseEntity<>(boardService.readDetailBoard(boardId), HttpStatus.OK);
+    }
+
+    @PatchMapping("{boardId}")
+    public ResponseEntity<ReadBoardResponse> updateBoard(@PathVariable("boardId") Long boardId, @RequestBody UpdateBoardRequest updateBoardRequest) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email = ((UserDetails) principal).getUsername();
+        return new ResponseEntity<>(boardService.updateBoard(boardId, userService.getUserEntityByLogin(email), updateBoardRequest.getTitle(), updateBoardRequest.getContent()), HttpStatus.OK);
     }
 
     @DeleteMapping("{boardId}")

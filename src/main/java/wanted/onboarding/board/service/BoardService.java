@@ -56,4 +56,10 @@ public class BoardService {
         isWriter(boardId, user);
         boardRepository.delete(getBoardEntity(boardId));
     }
+
+    @Transactional
+    public ReadBoardResponse updateBoard(Long boardId, User user, String title, String content) {
+        isWriter(boardId, user);
+        return ReadBoardResponse.fromEntityToDto(getBoardEntity(boardId).updateBoard(title, content));
+    }
 }
