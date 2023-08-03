@@ -1,5 +1,8 @@
 package wanted.onboarding.board.domain;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import wanted.onboarding.user.domain.User;
 
 import javax.persistence.*;
@@ -7,6 +10,8 @@ import java.time.LocalDateTime;
 
 @Table(name = "board")
 @Entity
+@Getter
+@NoArgsConstructor
 public class Board {
 
     @Id
@@ -29,4 +34,20 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Builder
+    public Board(String title, String content, User user) {
+        this.title = title;
+        this.content = content;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = null;
+        this.user = user;
+    }
+
+    public Board updateBoard(String title, String content) {
+        this.title = title;
+        this.content = content;
+        this.updatedAt = LocalDateTime.now();
+        return this;
+    }
 }
