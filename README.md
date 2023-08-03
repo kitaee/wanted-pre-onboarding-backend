@@ -8,6 +8,42 @@
 ## 데이터베이스 테이블 구조
 ![img_3.png](database.png)
 
+## API 명세서
+### 1. 사용자 회원가입
+- ### Request
+    - POST /api/user/join
+    ```json
+    {
+      "email":"dlrlxo999@naver.com",
+      "password":"12345678"
+    }
+    ```
+- ### Response
+    - 201 CREATED (성공)
+    - 200 OK (실패 - case1)
+    ```json
+    {
+      "status": 2000,
+      "code": "INVALID_EMAIL",
+      "message": "이메일 형식이 올바르지 않습니다"
+    }
+    ```
+    - 200 OK (실패 - case2)
+    ```json
+    {
+      "status": 2001,
+      "code": "INVALID_PASSWORD",
+      "message": "비밀번호 길이가 부족합니다"
+    }
+    ```
+    - 200 OK (실패 - case3)
+    ```json
+    {
+      "status": 2002,
+      "code": "DUPLICATE_EMAIL",
+      "message": "중복된 이메일입니다"
+    }
+    ```
 ## 필수 작성 내용
 - README.md에는 다음과 같은 내용이 포함되어야 합니다:
     - 지원자의 성명
