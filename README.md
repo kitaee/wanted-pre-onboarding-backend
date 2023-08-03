@@ -58,7 +58,22 @@
     - 200 OK (성공) / header "Authorization" : "Bearer {AccessToken}"
     - 401 Unauthorized (실패)
 
-
+### 3. 게시글 생성
+- ### Request
+    - POST /api/board
+    ```json
+    {
+      "title": "테스트 게시글 제목",
+      "content": "테스트 게시글 내용"
+    }
+    ```
+- ### Response
+    - 201 CREATED (성공)
+    ```json
+    {
+      "boardId": 2
+    }
+    ```
 ## 필수 작성 내용
 - README.md에는 다음과 같은 내용이 포함되어야 합니다:
     - 지원자의 성명
