@@ -21,7 +21,8 @@ public enum ErrorCode {
     NOT_FOUND_USER(2003, "로그인한 사용자를 찾을 수 없습니다"),
 
     // BOARD (3000 ~ 3999)
-    NOT_FOUND_BOARD(3000, "게시글을 찾을 수 없습니다");
+    NOT_FOUND_BOARD(3000, "게시글을 찾을 수 없습니다"),
+    NOT_AUTHORIZED_USER(3001, "본인의 게시글만 수정 및 삭제할 수 있습니다");
 
     private final Integer code;
     private final String message;

@@ -44,4 +44,16 @@ public class BoardService {
     private Board getBoardEntity(Long boardId) {
         return boardRepository.findById(boardId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
     }
+
+    private void isWriter(Long boardId, User user) {
+        if(!getBoardEntity(boardId).getUser().equals(user)) {
+            throw new CustomException(ErrorCode.NOT_AUTHORIZED_USER);
+        }
+    }
+
+    @Transactional
+    public void deleteBoard(Long boardId, User user) {
+        isWriter(boardId, user);
+        boardRepository.delete(getBoardEntity(boardId));
+    }
 }

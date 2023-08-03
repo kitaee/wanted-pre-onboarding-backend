@@ -38,4 +38,12 @@ public class BoardController {
     public ResponseEntity<ReadBoardResponse> readDetailBoard(@PathVariable("boardId") Long boardId) {
         return new ResponseEntity<>(boardService.readDetailBoard(boardId), HttpStatus.OK);
     }
+
+    @DeleteMapping("{boardId}")
+    public ResponseEntity<Void> deleteBoard(@PathVariable("boardId") Long boardId) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email = ((UserDetails) principal).getUsername();
+        boardService.deleteBoard(boardId, userService.getUserEntityByLogin(email));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
