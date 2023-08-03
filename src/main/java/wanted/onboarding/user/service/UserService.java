@@ -79,4 +79,12 @@ public class UserService {
             throw new CustomException(ErrorCode.INVALID_PASSWORD);
         }
     }
+
+    /**
+     *  Date : 2023-08-03
+     *  Description: username(email)로 사용자 찾기 메소드
+     * */
+    public User getUserEntityByLogin(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+    }
 }
