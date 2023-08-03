@@ -9,6 +9,8 @@ import wanted.onboarding.board.domain.Board;
 import wanted.onboarding.board.dto.CreateBoardResponse;
 import wanted.onboarding.board.dto.ReadBoardResponse;
 import wanted.onboarding.board.repository.BoardRepository;
+import wanted.onboarding.exception.CustomException;
+import wanted.onboarding.exception.ErrorCode;
 import wanted.onboarding.user.domain.User;
 
 @Service
@@ -33,5 +35,13 @@ public class BoardService {
 
     public Page<ReadBoardResponse> readBoard(Pageable pageable) {
         return boardRepository.getPageableBoard(pageable);
+    }
+
+    public ReadBoardResponse readDetailBoard(Long boardId) {
+        return ReadBoardResponse.fromEntityToDto(getBoardEntity(boardId));
+    }
+
+    private Board getBoardEntity(Long boardId) {
+        return boardRepository.findById(boardId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
     }
 }

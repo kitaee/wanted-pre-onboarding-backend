@@ -33,4 +33,9 @@ public class BoardController {
     public ResponseEntity<Page<ReadBoardResponse>> readBoard(Pageable pageable) {
         return new ResponseEntity<>(boardService.readBoard(pageable), HttpStatus.OK);
     }
+
+    @GetMapping("{boardId}")
+    public ResponseEntity<ReadBoardResponse> readDetailBoard(@PathVariable("boardId") Long boardId) {
+        return new ResponseEntity<>(boardService.readDetailBoard(boardId), HttpStatus.OK);
+    }
 }
