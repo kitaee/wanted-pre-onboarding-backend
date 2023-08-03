@@ -1,16 +1,16 @@
 package wanted.onboarding.board;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import wanted.onboarding.board.dto.CreateBoardRequest;
 import wanted.onboarding.board.dto.CreateBoardResponse;
+import wanted.onboarding.board.dto.ReadBoardResponse;
 import wanted.onboarding.board.service.BoardService;
 import wanted.onboarding.user.service.UserService;
 
@@ -27,5 +27,10 @@ public class BoardController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email = ((UserDetails) principal).getUsername();
         return new ResponseEntity<>(boardService.createBoard(createBoardRequest.getTitle(), createBoardRequest.getContent(), userService.getUserEntityByLogin(email)), HttpStatus.CREATED);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Page<ReadBoardResponse>> readBoard(Pageable pageable) {
+        return new ResponseEntity<>(boardService.readBoard(pageable), HttpStatus.OK);
     }
 }
