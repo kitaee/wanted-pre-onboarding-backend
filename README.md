@@ -44,6 +44,21 @@
       "message": "중복된 이메일입니다"
     }
     ```
+
+### 2. 사용자 로그인
+- ### Request
+    - POST(x-www-form-urlencoded) /login
+    ```json
+    {
+      "username":"dlrlxo999@naver.com",
+      "password":"@@aa0332601"
+    }
+    ```
+- ### Response
+    - 200 OK (성공) / header "Authorization" : "Bearer {AccessToken}"
+    - 401 Unauthorized (실패)
+
+
 ## 필수 작성 내용
 - README.md에는 다음과 같은 내용이 포함되어야 합니다:
     - 지원자의 성명
