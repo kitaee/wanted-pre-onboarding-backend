@@ -61,6 +61,7 @@
 ### 3. 게시글 생성
 - ### Request
     - POST /api/board
+    - header "Authorization" : "Bearer {AccessToken}"
     ```json
     {
       "title": "테스트 게시글 제목",
@@ -72,6 +73,72 @@
     ```json
     {
       "boardId": 2
+    }
+    ```
+
+### 4. 게시글 목록 조회
+- ### Request
+    - GET /api/board?page=0&size=4
+    - header "Authorization" : "Bearer {AccessToken}"
+- ### Response
+    - 200 OK (성공)
+    ```json
+    {
+        "content": [
+            {
+                "boardId": 1,
+                "title": "새로운 게시글 제목~!",
+                "content": "새로운 게시글 내용",
+                "createdAt": "2023-08-03T19:18:25.024519",
+                "updatedAt": "2023-08-03T21:05:45.968015"
+            },
+            {
+                "boardId": 3,
+                "title": "테스트 게시글 제목1",
+                "content": "테스트 게시글 내용1",
+                "createdAt": "2023-08-03T21:36:55.938846",
+                "updatedAt": null
+            },
+            {
+                "boardId": 4,
+                "title": "테스트 게시글 제목2",
+                "content": "테스트 게시글 내용2",
+                "createdAt": "2023-08-03T21:37:01.737425",
+                "updatedAt": null
+            },
+            {
+                "boardId": 5,
+                "title": "테스트 게시글 제목3",
+                "content": "테스트 게시글 내용3",
+                "createdAt": "2023-08-03T21:37:07.128173",
+                "updatedAt": null
+            }
+        ],
+        "pageable": {
+            "sort": {
+                "empty": true,
+                "sorted": false,
+                "unsorted": true
+            },
+            "offset": 0,
+            "pageNumber": 0,
+            "pageSize": 4,
+            "paged": true,
+            "unpaged": false
+        },
+        "last": true,
+        "totalPages": 1,
+        "totalElements": 4,
+        "sort": {
+            "empty": true,
+            "sorted": false,
+            "unsorted": true
+        },
+        "first": true,
+        "number": 0,
+        "size": 4,
+        "numberOfElements": 4,
+        "empty": false
     }
     ```
 ## 필수 작성 내용
