@@ -20,6 +20,11 @@
     ```
 - ### Response
     - 201 CREATED (성공)
+  ```json
+    {
+      "userId": 1
+    }
+    ```
     - 200 OK (실패 - case1)
     ```json
     {
