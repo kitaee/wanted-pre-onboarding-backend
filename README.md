@@ -62,6 +62,32 @@
 - ### Response
     - 200 OK (성공) / header "Authorization" : "Bearer {AccessToken}"
     - 401 Unauthorized (실패)
+    - 200 OK (실패 - case1)
+    ```json
+    {
+      "headers": {},
+      "body": {
+          "status": 2000,
+          "code": "INVALID_EMAIL",
+          "message": "이메일 형식이 올바르지 않습니다"
+    },
+      "statusCodeValue": 200,
+      "statusCode": "OK"
+    }
+    ```
+  - 200 OK (실패 - case2)
+  ```json
+  {
+    "headers": {},
+    "body": {
+        "status": 2001,
+        "code": "INVALID_PASSWORD",
+        "message": "비밀번호 길이가 부족합니다"
+  },
+    "statusCodeValue": 200,
+    "statusCode": "OK"
+  }
+  ```
 
 ### 3. 게시글 생성
 - ### Request
