@@ -75,6 +75,7 @@
       "boardId": 2
     }
     ```
+  - 403 Forbidden (실패)
 
 ### 4. 게시글 목록 조회
 - ### Request
@@ -141,6 +142,34 @@
         "empty": false
     }
     ```
+  - 403 Forbidden (실패)
+
+### 5. 특정 게시글 조회
+- ### Request
+  - GET /api/board/{게시글_ID}
+  - header "Authorization" : "Bearer {AccessToken}"
+
+- ### Response
+  - 200 OK (성공)
+    ```json
+    {
+      "boardId": 1,
+      "title": "새로운 게시글 제목~!",
+      "content": "새로운 게시글 내용",
+      "createdAt": "2023-08-03T19:18:25.024519",
+      "updatedAt": "2023-08-03T21:05:45.968015"
+    }
+    ```
+  - 403 Forbidden (실패 - case1)
+  - 200 OK (실패 - case2)
+    ```json
+     {
+       "status": 3000,
+       "code": "NOT_FOUND_BOARD",
+       "message": "게시글을 찾을 수 없습니다"
+     }
+    ```
+
 ## 필수 작성 내용
 - README.md에는 다음과 같은 내용이 포함되어야 합니다:
     - 지원자의 성명
