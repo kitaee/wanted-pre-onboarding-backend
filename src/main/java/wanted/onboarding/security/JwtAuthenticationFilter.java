@@ -12,6 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import wanted.onboarding.exception.ErrorCode;
 import wanted.onboarding.exception.ErrorResponseEntity;
+import wanted.onboarding.user.domain.PrincipalDetails;
 import wanted.onboarding.user.domain.User;
 
 import javax.servlet.FilterChain;
@@ -49,7 +50,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) {
-        User loginUser = (User) authResult.getPrincipal();
+
+        PrincipalDetails loginUser = (PrincipalDetails) authResult.getPrincipal();
         response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + jwtTokenProvider.createToken(loginUser.getUsername()));
     }
 
