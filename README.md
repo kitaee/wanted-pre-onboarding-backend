@@ -170,6 +170,45 @@
      }
     ```
 
+### 6. 게시글 수정
+- ### Request
+  - PATCH /api/board/{게시글_ID}
+  - header "Authorization" : "Bearer {AccessToken}"
+    ```json
+    {
+      "title": "테스트 게시글 제목",
+      "content": "테스트 게시글 내용"
+    }
+    ```
+- ### Response
+  - 200 OK (성공)
+    ```json
+    {
+      "boardId": 1,
+      "title": "테스트 게시글 제목",
+      "content": "테스트 게시글 내용",
+      "createdAt": "2023-08-03T19:18:25.024519",
+      "updatedAt": "2023-08-04T12:12:47.33118"
+    }
+    ```
+  - 403 Forbidden (실패)
+  - 200 OK (실패 - case1)
+    ```json
+      {
+        "status": 3000,
+        "code": "NOT_FOUND_BOARD",
+        "message": "게시글을 찾을 수 없습니다"
+      }
+    ```
+    - 200 OK (실패 - case2)
+    ```json
+      {
+        "status": 3001,
+        "code": "NOT_AUTHORIZED_USER",
+        "message": "본인의 게시글만 수정 및 삭제할 수 있습니다"
+      }
+    ```
+
 ## 필수 작성 내용
 - README.md에는 다음과 같은 내용이 포함되어야 합니다:
     - 지원자의 성명
