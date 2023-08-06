@@ -124,7 +124,7 @@ DELETE /api/board/{boardId}
 - ### Response
     - 200 OK (성공) / header "Authorization" : "Bearer {AccessToken}"
     - 401 Unauthorized (실패)
-    - 200 OK (실패 - case1)
+    - 401 Unauthorized (실패 - case1)
     ```json
     {
       "headers": {},
@@ -137,7 +137,7 @@ DELETE /api/board/{boardId}
       "statusCode": "OK"
     }
     ```
-  - 200 OK (실패 - case2)
+  - 401 Unauthorized (실패 - case2)
   ```json
   {
     "headers": {},
