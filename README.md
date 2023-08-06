@@ -24,6 +24,46 @@
   java -jar onboarding-0.0.1-SNAPSHOT.jar
   ```
 
+## 엔드포인트 호출 방법
+
+과제 1. 회원가입
+```text
+POST /api/join
+```
+과제 2. 로그인
+```text
+POST /login
+```
+과제 3. 새로운 게시글 생성 (토큰 필요)
+```text
+POST /api/board
+```
+과제 4. 게시글 목록 조회 (토큰 필요)
+```text
+POST /api/board?page=0&size=4
+```
+과제 5. 특정 게시글 조회 (토큰 필요)
+```text
+GET /api/board/{boardId}
+```
+과제 6. 특정 게시글 수정 (토큰 필요)
+```text
+PATCH /api/board/{boardId}
+```
+과제 7. 특정 게시글 삭제 (토큰 필요)
+```text
+DELETE /api/board/{boardId}
+```
+
+## 구현 방법 및 이유에 대한 간략한 설명
+- 확장성과 재사용성을 위해 CustomException을 직접 정의해서 사용했습니다.
+- 단방향 암호화를 위한 BCryptPasswordEncoder를 사용했습니다.
+- Spring Security를 사용해 사용자 인증 로직을 구현했습니다.
+- 사용자 정보를 JWT 토큰에 넣어 헤더로 통신하며 사용자를 인식할 수 있도록 했습니다.
+- Spring Data Jpa에서 제공하는 페이징 기능을 사용했습니다.
+- SecurityConfig에서 인증이 불필요한 URL과 필요한 URL을 나눠 정의했습니다.
+- Junit을 사용해 테스트 케이스를 작성했습니다.
+
 ## 데이터베이스 테이블 구조
 ![img_3.png](database.png)
 
