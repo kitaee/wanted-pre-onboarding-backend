@@ -5,6 +5,25 @@
 ## 지원자의 성명
 - 이기태
 
+## 애플리케이션 실행 방법
+1. 레파지토리 클론
+  ```text
+  git clone https://github.com/kitaee/wanted-pre-onboarding-backend.git
+  ```
+
+2. DB 연결 변경 (application-mysql.yml)
+  ```text
+  cd /src/main/resources
+  vi application-mysql.yml
+  ```
+
+3. 빌드 및 실행
+  ```text
+  ./gradlew clean build
+  cd /build/libs
+  java -jar onboarding-0.0.1-SNAPSHOT.jar
+  ```
+
 ## 데이터베이스 테이블 구조
 ![img_3.png](database.png)
 
