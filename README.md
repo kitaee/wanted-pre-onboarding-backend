@@ -55,6 +55,9 @@ PATCH /api/board/{boardId}
 DELETE /api/board/{boardId}
 ```
 
+## 구현한 API 동작을 촬영한 데모 영상 링크
+[동영상 링크(YOUTUBE)](https://www.youtube.com/watch?v=XhTzRoHHTIQ&t=58s)
+
 ## 구현 방법 및 이유에 대한 간략한 설명
 - 확장성과 재사용성을 위해 CustomException을 직접 정의해서 사용했습니다.
 - 단방향 암호화를 위한 BCryptPasswordEncoder를 사용했습니다.

@@ -62,8 +62,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        response.setStatus(HttpStatus.OK.value());
-        response.setStatus(HttpServletResponse.SC_OK);
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
 
